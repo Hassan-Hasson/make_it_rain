@@ -19,16 +19,26 @@ class MakeItRainState extends State<MakeItRain> {
     });
   }
 
-//  void _desend() {
-//    setState(() {
-//      if (_moneyCounter <= 0) {
-//        _moneyCounter = 0;
-//        debugPrint("clicked");
-//      } else {
-//        _moneyCounter -= 100;
-//      }
-//    });
-//  }
+  void _desend() {
+    setState(() {
+      if (_moneyCounter <= 0) {
+        _moneyCounter = 0;
+        debugPrint("clicked");
+        final snackBar = SnackBar(
+          content: Text('Yay! A SnackBar!'),
+          action: SnackBarAction(
+            label: 'Add',
+            onPressed: () {
+              _rainMoney();
+            },
+          ),
+        );
+        _key.currentState.showSnackBar(snackBar);
+      } else {
+        _moneyCounter -= 100;
+      }
+    });
+  }
 
   void _clear() {
     setState(() {
@@ -95,16 +105,7 @@ class MakeItRainState extends State<MakeItRain> {
                   color: Colors.lightGreen,
                   textColor: Colors.white70,
                   onPressed: () {
-                    final snackBar = SnackBar(
-                      content: Text('Yay! A SnackBar!'),
-                      action: SnackBarAction(
-                        label: 'Undo',
-                        onPressed: () {
-                          // Some code to undo the change!
-                        },
-                      ),
-                    );
-                    _key.currentState.showSnackBar(snackBar);
+                    _desend();
                     // Find the Scaffold in the Widget tree and use it to show a SnackBar!
                   },
                   child: new Text(
