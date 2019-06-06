@@ -9,9 +9,13 @@ class MakeItRain extends StatefulWidget {
 
 class MakeItRainState extends State<MakeItRain> {
   int _moneyCounter = 0;
-  GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-//  final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
 
+  /// making a global key ...... still not understand it ??!
+  GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+
+  /// _rainMoney
+  /// is for raising the money by 100
+  /// need no parameter
   void _rainMoney() {
     // set state is called each time we need to update the ui
     setState(() {
@@ -19,6 +23,11 @@ class MakeItRainState extends State<MakeItRain> {
     });
   }
 
+  /// _desend function
+  /// no parameters needed
+  /// decrees the _moneyCounter by 100 and if it reach 0 is show a snackbar
+  /// telling you that is no balance to decrease and give u option to "add"
+  /// balance by 100 to the _moneyCounter
   void _desend() {
     setState(() {
       if (_moneyCounter <= 0) {
@@ -106,7 +115,6 @@ class MakeItRainState extends State<MakeItRain> {
                   textColor: Colors.white70,
                   onPressed: () {
                     _desend();
-                    // Find the Scaffold in the Widget tree and use it to show a SnackBar!
                   },
                   child: new Text(
                     "desend it",
