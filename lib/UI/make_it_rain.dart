@@ -9,6 +9,7 @@ class MakeItRain extends StatefulWidget {
 
 class MakeItRainState extends State<MakeItRain> {
   int _moneyCounter = 0;
+  GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 //  final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
 
   void _rainMoney() {
@@ -38,6 +39,7 @@ class MakeItRainState extends State<MakeItRain> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      key: _key,
       appBar: new AppBar(
         title: new Text("Make IT Rain"),
         backgroundColor: Colors.lightGreen,
@@ -102,6 +104,7 @@ class MakeItRainState extends State<MakeItRain> {
                         },
                       ),
                     );
+                    _key.currentState.showSnackBar(snackBar);
                     // Find the Scaffold in the Widget tree and use it to show a SnackBar!
                   },
                   child: new Text(
