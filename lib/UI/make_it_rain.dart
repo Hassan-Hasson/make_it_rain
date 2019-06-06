@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:make_it_rain/UI/snak.dart';
 
 class MakeItRain extends StatefulWidget {
   @override
@@ -151,18 +152,24 @@ class MakeItRainState extends State<MakeItRain> {
                 ),
               ),
             ),
-            //
+
             new Expanded(
               child: new Center(
                 child: new FlatButton(
                   color: Colors.lightGreen,
                   textColor: Colors.white70,
-                  onPressed: _clear,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SnackBarDemo()));
+                  },
                   child: new Text(
-                    "clear",
+                    "next",
                     style: new TextStyle(
                       fontSize: 15,
                     ),
+                  ),
                 ),
               ),
             ),
