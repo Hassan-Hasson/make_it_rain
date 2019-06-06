@@ -34,6 +34,8 @@ class MakeItRainState extends State<MakeItRain> {
         _moneyCounter = 0;
         debugPrint("clicked");
         final snackBar = SnackBar(
+          duration: Duration(seconds: 10),
+          backgroundColor: Colors.grey,
           content: Text('Yay! A SnackBar!'),
           action: SnackBarAction(
             label: 'Add',
@@ -49,6 +51,8 @@ class MakeItRainState extends State<MakeItRain> {
     });
   }
 
+  /// _clear
+  /// just remove all the balance and make it "Zero" again
   void _clear() {
     setState(() {
       _moneyCounter = 0;
@@ -78,6 +82,8 @@ class MakeItRainState extends State<MakeItRain> {
                 ),
               ),
             ),
+
+            //money counter
             new Expanded(
               child: new Center(
                 child: new Text(
@@ -92,6 +98,7 @@ class MakeItRainState extends State<MakeItRain> {
             ),
 
 //          flat button
+            // for let it rain
             new Expanded(
               child: new Center(
                 child: new FlatButton(
@@ -108,6 +115,8 @@ class MakeItRainState extends State<MakeItRain> {
               ),
             ),
 
+            // desend button
+            // decrease money counter
             new Expanded(
               child: new Center(
                 child: new FlatButton(
@@ -139,6 +148,21 @@ class MakeItRainState extends State<MakeItRain> {
                       fontSize: 15,
                     ),
                   ),
+                ),
+              ),
+            ),
+            //
+            new Expanded(
+              child: new Center(
+                child: new FlatButton(
+                  color: Colors.lightGreen,
+                  textColor: Colors.white70,
+                  onPressed: _clear,
+                  child: new Text(
+                    "clear",
+                    style: new TextStyle(
+                      fontSize: 15,
+                    ),
                 ),
               ),
             ),
