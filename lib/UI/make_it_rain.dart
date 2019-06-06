@@ -9,6 +9,15 @@ class MakeItRain extends StatefulWidget {
 
 class MakeItRainState extends State<MakeItRain> {
   int _moneyCounter = 0;
+  final snackBar = SnackBar(
+    content: Text('your balance is 0 '),
+    action: SnackBarAction(
+      label: 'add',
+      onPressed: () {
+        // Some code to undo the change!
+      },
+    ),
+  );
 //  final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
 
   void _rainMoney() {
@@ -18,16 +27,17 @@ class MakeItRainState extends State<MakeItRain> {
     });
   }
 
-//  void _desend() {
-//    setState(() {
-//      if (_moneyCounter <= 0) {
-//        _moneyCounter = 0;
-//        debugPrint("clicked");
-//      } else {
-//        _moneyCounter -= 100;
-//      }
-//    });
-//  }
+  void _desend(BuildContext context) {
+    setState(() {
+      if (_moneyCounter <= 0) {
+        _moneyCounter = 0;
+        debugPrint("clicked");
+        Scaffold.of(context).showSnackBar(snackBar);
+      } else {
+        _moneyCounter -= 100;
+      }
+    });
+  }
 
   void _clear() {
     setState(() {
@@ -42,96 +52,93 @@ class MakeItRainState extends State<MakeItRain> {
         title: new Text("Make IT Rain"),
         backgroundColor: Colors.lightGreen,
       ),
-      body: new Container(
-        child: new Column(
-          children: <Widget>[
-            new Center(
-              child: new Text(
-                //text
-                "Get Rich!!",
-                // styling
-                style: new TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 29.9,
-                ),
-              ),
-            ),
-            new Expanded(
-              child: new Center(
-                child: new Text(
-                  '\$$_moneyCounter',
-                  style: new TextStyle(
-                    color: Colors.green,
-                    fontSize: 46,
-                    fontWeight: FontWeight.w800,
+      body: Builder(
+        builder: (BuildContext context) {
+          return new Container(
+            child: new Column(
+              children: <Widget>[
+                new Center(
+                  child: new Text(
+                    //text
+                    "Get Rich!!",
+                    // styling
+                    style: new TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 29.9,
+                    ),
                   ),
                 ),
-              ),
-            ),
+                new Expanded(
+                  child: new Center(
+                    child: new Text(
+                      '\$$_moneyCounter',
+                      style: new TextStyle(
+                        color: Colors.green,
+                        fontSize: 46,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
 
 //          flat button
-            new Expanded(
-              child: new Center(
-                child: new FlatButton(
-                  color: Colors.lightGreen,
-                  textColor: Colors.white70,
-                  onPressed: _rainMoney,
-                  child: new Text(
-                    "let it rain",
-                    style: new TextStyle(
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            new Expanded(
-              child: new Center(
-                child: new FlatButton(
-                  color: Colors.lightGreen,
-                  textColor: Colors.white70,
-                  onPressed: () {
-                    final snackBar = SnackBar(
-                      content: Text('Yay! A SnackBar!'),
-                      action: SnackBarAction(
-                        label: 'Undo',
-                        onPressed: () {
-                          // Some code to undo the change!
-                        },
+                new Expanded(
+                  child: new Center(
+                    child: new FlatButton(
+                      color: Colors.lightGreen,
+                      textColor: Colors.white70,
+                      onPressed: _rainMoney,
+                      child: new Text(
+                        "let it rain",
+                        style: new TextStyle(
+                          fontSize: 15,
+                        ),
                       ),
-                    );
-                    // Find the Scaffold in the Widget tree and use it to show a SnackBar!
-                  },
-                  child: new Text(
-                    "desend it",
-                    style: new TextStyle(
-                      fontSize: 15,
                     ),
                   ),
                 ),
-              ),
-            ),
 
-            // clear button
-            new Expanded(
-              child: new Center(
-                child: new FlatButton(
-                  color: Colors.lightGreen,
-                  textColor: Colors.white70,
-                  onPressed: _clear,
-                  child: new Text(
-                    "clear",
-                    style: new TextStyle(
-                      fontSize: 15,
+                new Expanded(
+                  child: new Center(
+                    child: new FlatButton(
+                      color: Colors.lightGreen,
+                      textColor: Colors.white70,
+                      onPressed: () {
+                        debugPrint("preseded");
+                        _desend(context);
+                        // Find the Scaffold in the Widget tree and use it to show a SnackBar!
+                      },
+                      child: new Text(
+                        "desend it",
+                        style: new TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+
+                // clear button
+                new Expanded(
+                  child: new Center(
+                    child: new FlatButton(
+                      color: Colors.lightGreen,
+                      textColor: Colors.white70,
+                      onPressed: _clear,
+                      child: new Text(
+                        "clear",
+                        style: new TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
