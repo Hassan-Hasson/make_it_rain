@@ -7,16 +7,20 @@ class FirstRoute extends StatelessWidget {
       appBar: AppBar(
         title: Text('First Route'),
       ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Open route'),
-          onPressed: () {
-            debugPrint("clicked");
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondRoute()),
-            );
-          },
+      body: new Center(
+        child: new Column(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {
+                debugPrint("clicked");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondRoute()),
+                );
+              },
+              child: Text('route!'),
+            ),
+          ],
         ),
       ),
     );

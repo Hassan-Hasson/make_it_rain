@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:make_it_rain/UI/snak.dart';
 
+import 'customRoute.dart';
+
 class MakeItRain extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -161,7 +163,7 @@ class MakeItRainState extends State<MakeItRain> {
                   onPressed: () {
                     Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        new MyCustomRoute(
                             builder: (context) => SnackBarDemo()));
                   },
                   child: new Text(
